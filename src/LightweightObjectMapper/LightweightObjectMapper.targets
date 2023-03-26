@@ -1,0 +1,5 @@
+﻿<Project>
+  <PropertyGroup Condition="'$(NoLightweightObjectMapperPreCodes)' == 'true'">
+    <DefineConstants>$(DefineConstants);NO_LIGHTWEIGHT_OBJECT_MAPPER_PRE_CODES</DefineConstants>
+  </PropertyGroup>
+</Project>

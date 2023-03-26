@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>LightweightObjectMapper</RootNamespace>
+
+    <TargetFrameworks>net472;net6.0;net7.0</TargetFrameworks>
+
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+
+    <IsTestProject>true</IsTestProject>
+
+    <DefineConstants>$(DefineConstants);NO_BUILD_ERROR_CODE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\MapperTestLibrary1\**\*.cs" Exclude="..\**\obj\**\*" Link="\Codes\%(RecursiveDir)%(FileName)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.*" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.*" />
+    <PackageReference Include="coverlet.collector" Version="3.*" />
+
+    <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net472'">
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\LightweightObjectMapper\LightweightObjectMapper.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\MappingProfileProvideLibrary\MappingProfileProvideLibrary.csproj" />
+  </ItemGroup>
+</Project>

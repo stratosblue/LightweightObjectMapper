@@ -1,0 +1,9 @@
+﻿{
+  "profiles": {
+    "LightweightObjectMapper": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "../../test/MapperTestLibrary1/MapperTestLibrary1.csproj"
+      //"targetProject": "../../test/MapperTestLibrary3/MapperTestLibrary3.csproj"
+    }
+  }
+}

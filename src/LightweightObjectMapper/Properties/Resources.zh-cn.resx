@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AmbiguousMapTypeDiagnosticMessage" xml:space="preserve">
+    <value>LightweightObjectMapper 必须使用明确类型才能生成代码，"{0}" 不是支持的类型。</value>
+  </data>
+  <data name="AmbiguousMapTypeDiagnosticTitle" xml:space="preserve">
+    <value>必须有明确的目标类型。</value>
+  </data>
+  <data name="CollectionMapIncorrectUsageMessage" xml:space="preserve">
+    <value>无法使用 "{0}" 的实例进行集合映射，请使用泛型方法。</value>
+  </data>
+  <data name="CollectionMapIncorrectUsageTitle" xml:space="preserve">
+    <value>集合映射使用不正确。</value>
+  </data>
+  <data name="CollectionMappingMethodDefineErrorMessage" xml:space="preserve">
+    <value>集合映射方法应包含唯一泛型参数 "T" ，以及唯一参数 "IEnumerable{T}"，返回类型应该为 "IEnumerable{T}" 的派生类型。</value>
+  </data>
+  <data name="CollectionMappingMethodDefineErrorTitle" xml:space="preserve">
+    <value>集合映射方法定义错误。</value>
+  </data>
+  <data name="ConstructorMatchFailedMessage" xml:space="preserve">
+    <value>类型 "{0}" 的构造函数匹配失败。</value>
+  </data>
+  <data name="ConstructorMatchFailedTitle" xml:space="preserve">
+    <value>构造函数匹配失败。</value>
+  </data>
+  <data name="DuplicateDefinitionCollectionMappingMethodMessage" xml:space="preserve">
+    <value>重复定义了对集合 "{0}" 的映射方法。</value>
+  </data>
+  <data name="DuplicateDefinitionCollectionMappingMethodTitle" xml:space="preserve">
+    <value>重复定义集合映射方法。</value>
+  </data>
+  <data name="ErrorCallPlaceholderClassMessage" xml:space="preserve">
+    <value>不要使用占位拓展方法类。</value>
+  </data>
+  <data name="ErrorCallPlaceholderMethodMessage" xml:space="preserve">
+    <value>不要使用占位拓展方法；如果未正常重定向到目标映射拓展方法，请尝试修正其它错误并重新生成项目。</value>
+  </data>
+  <data name="ErrorMappingProfileIncludeMessage" xml:space="preserve">
+    <value>错误的 [MappingProfileInclude] 标记. "{0}" 不是一个有效的 MappingProfile 类。</value>
+  </data>
+  <data name="ErrorMappingProfileIncludeTitle" xml:space="preserve">
+    <value>错误的 [MappingProfileInclude] 标记。</value>
+  </data>
+  <data name="InitOnlyPropertyCanNotMapMessage" xml:space="preserve">
+    <value>类型 "{0}" 的实例包含无法进行映射的 init 属性 - "{1}" 。</value>
+  </data>
+  <data name="InitOnlyPropertyCanNotMapTitle" xml:space="preserve">
+    <value>无法映射实例的 init 属性。</value>
+  </data>
+  <data name="NeedPartialKeywordMessage" xml:space="preserve">
+    <value>类型 "{0}" 的定义需要 partial 关键字。</value>
+  </data>
+  <data name="NeedPartialKeywordTitle" xml:space="preserve">
+    <value>需要 partial 关键字。</value>
+  </data>
+  <data name="NoAnyPublicConstructorMessage" xml:space="preserve">
+    <value>类型 "{0}" 没有公共构造函数。</value>
+  </data>
+  <data name="NoAnyPublicConstructorTitle" xml:space="preserve">
+    <value>类型必须具有公共构造函数。</value>
+  </data>
+  <data name="NotFoundMatchPropertyOrFieldMessage" xml:space="preserve">
+    <value>未找到属性或字段 - "{0}" 的映射项。</value>
+  </data>
+  <data name="NotFoundMatchPropertyOrFieldTitle" xml:space="preserve">
+    <value>未找到属性或字段的映射项。</value>
+  </data>
+  <data name="PropertyOrFieldTypeNotMatchMessage" xml:space="preserve">
+    <value>属性或字段 - "{0}" 找到了映射项，但类型不匹配 {1} -&gt; {2}。</value>
+  </data>
+  <data name="PropertyOrFieldTypeNotMatchTitle" xml:space="preserve">
+    <value>属性或字段找到了映射项，但类型不匹配。</value>
+  </data>
+  <data name="ReadOnlyFieldCanNotMapMessage" xml:space="preserve">
+    <value>类型 "{0}" 的实例包含无法进行映射的只读字段 - "{1}" 。</value>
+  </data>
+  <data name="ReadOnlyFieldCanNotMapTitle" xml:space="preserve">
+    <value>无法映射实例的只读字段。</value>
+  </data>
+  <data name="UndefinedCollectionMappingMessage" xml:space="preserve">
+    <value>未定义的集合映射 "{0}" -&gt; "{1}"，请尝试使用 "MappingProfile" 声明其映射方式。</value>
+  </data>
+  <data name="UndefinedCollectionMappingTitle" xml:space="preserve">
+    <value>未定义的集合映射。</value>
+  </data>
+  <data name="UnexpectedExceptionWhileBuildingMessage" xml:space="preserve">
+    <value>生成代码时出现意外的异常， {0}。</value>
+  </data>
+  <data name="UnexpectedExceptionWhileBuildingTitle" xml:space="preserve">
+    <value>生成代码时出现意外的异常。</value>
+  </data>
+</root>

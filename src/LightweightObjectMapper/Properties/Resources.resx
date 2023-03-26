@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AmbiguousMapTypeDiagnosticMessage" xml:space="preserve">
+    <value>LightweightObjectMapper must has a specific type to generate code. "{0}" is not a supported type.</value>
+  </data>
+  <data name="AmbiguousMapTypeDiagnosticTitle" xml:space="preserve">
+    <value>There must be a clear target type.</value>
+  </data>
+  <data name="CollectionMapIncorrectUsageMessage" xml:space="preserve">
+    <value>Can not use a instance of "{0}" to do collection map. Please using generic method.</value>
+  </data>
+  <data name="CollectionMapIncorrectUsageTitle" xml:space="preserve">
+    <value>Collection map incorrect usage.</value>
+  </data>
+  <data name="CollectionMappingMethodDefineErrorMessage" xml:space="preserve">
+    <value>The collection mapping method should contain the unique generic parameter "T" and the unique parameter "IEnumerable {T}", and the return type should be the derived type of "IEnumerable {T}"</value>
+  </data>
+  <data name="CollectionMappingMethodDefineErrorTitle" xml:space="preserve">
+    <value>Collection mapping method define error.</value>
+  </data>
+  <data name="ConstructorMatchFailedMessage" xml:space="preserve">
+    <value>Constructor match failed on "{0}".</value>
+  </data>
+  <data name="ConstructorMatchFailedTitle" xml:space="preserve">
+    <value>Constructor match failed.</value>
+  </data>
+  <data name="DuplicateDefinitionCollectionMappingMethodMessage" xml:space="preserve">
+    <value>Duplicate definition for collection \"{0}\" mapping.</value>
+  </data>
+  <data name="DuplicateDefinitionCollectionMappingMethodTitle" xml:space="preserve">
+    <value>Duplicate definition for collection mapping method.</value>
+  </data>
+  <data name="ErrorCallPlaceholderClassMessage" xml:space="preserve">
+    <value>Do not use the placeholder extension class.</value>
+  </data>
+  <data name="ErrorCallPlaceholderMethodMessage" xml:space="preserve">
+    <value>Do not use the placeholder extension method. If not redirect to the right mapper extension method please try fix other errors and rebuild the project.</value>
+  </data>
+  <data name="ErrorMappingProfileIncludeMessage" xml:space="preserve">
+    <value>Error [MappingProfileInclude] tag. "{0}" is not a valid MappingProfile Class.</value>
+  </data>
+  <data name="ErrorMappingProfileIncludeTitle" xml:space="preserve">
+    <value>Error [MappingProfileInclude] tag.</value>
+  </data>
+  <data name="InitOnlyPropertyCanNotMapMessage" xml:space="preserve">
+    <value>Intance for class "{0}" has init only property witch can not map - "{1}" .</value>
+  </data>
+  <data name="InitOnlyPropertyCanNotMapTitle" xml:space="preserve">
+    <value>Instance's init only property can not map.</value>
+  </data>
+  <data name="NeedPartialKeywordMessage" xml:space="preserve">
+    <value>Need partial keyword for type define "{0}".</value>
+  </data>
+  <data name="NeedPartialKeywordTitle" xml:space="preserve">
+    <value>Need partial keyword.</value>
+  </data>
+  <data name="NoAnyPublicConstructorMessage" xml:space="preserve">
+    <value>Class "{0}" has no public constructor.</value>
+  </data>
+  <data name="NoAnyPublicConstructorTitle" xml:space="preserve">
+    <value>Class must has public constructor.</value>
+  </data>
+  <data name="NotFoundMatchPropertyOrFieldMessage" xml:space="preserve">
+    <value>Property or field - "{0}" has not found map item.</value>
+  </data>
+  <data name="NotFoundMatchPropertyOrFieldTitle" xml:space="preserve">
+    <value>The property or field has not found map item.</value>
+  </data>
+  <data name="PropertyOrFieldTypeNotMatchMessage" xml:space="preserve">
+    <value>Property or field - "{0}" has found map item. But type not match {1} -&gt; {2}.</value>
+  </data>
+  <data name="PropertyOrFieldTypeNotMatchTitle" xml:space="preserve">
+    <value>The property or field has found map item. But type not match.</value>
+  </data>
+  <data name="ReadOnlyFieldCanNotMapMessage" xml:space="preserve">
+    <value>Intance for class "{0}" has read only field witch can not map - "{1}" .</value>
+  </data>
+  <data name="ReadOnlyFieldCanNotMapTitle" xml:space="preserve">
+    <value>Instance's read only field can not map.</value>
+  </data>
+  <data name="UndefinedCollectionMappingMessage" xml:space="preserve">
+    <value>Undefined collection mapping '{0}' -&gt;'{1}', please try declaring it's mapping method using 'MappingProfile'.</value>
+  </data>
+  <data name="UndefinedCollectionMappingTitle" xml:space="preserve">
+    <value>Undefined collection mapping.</value>
+  </data>
+  <data name="UnexpectedExceptionWhileBuildingMessage" xml:space="preserve">
+    <value>Unexpected exception while generate code. {0}</value>
+  </data>
+  <data name="UnexpectedExceptionWhileBuildingTitle" xml:space="preserve">
+    <value>Unexpected exception while generate code.</value>
+  </data>
+</root>

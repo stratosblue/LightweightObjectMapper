@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>MapperTestLibrary</RootNamespace>
+    <DefineConstants>$(DefineConstants);NO_BUILD_ERROR_CODE</DefineConstants>
+    <MappingMethodVisibility>public</MappingMethodVisibility>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\LightweightObjectMapper\LightweightObjectMapper.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\MappingProfileProvideLibrary\MappingProfileProvideLibrary.csproj" />
+  </ItemGroup>
+
+</Project>
