@@ -288,7 +288,9 @@ public static {targetCollectionTypeSymbol.ContainingNamespace.ToFullCodeString()
 
             if (metadataType == MappingMetadataType.MappingPrepareDeclaration)
             {
-                fields = CollectAssignmentFieldNames(methodDeclaration.Body!);
+                fields = methodDeclaration.Body is not null
+                         ? CollectAssignmentFieldNames(methodDeclaration.Body)
+                         : CollectArrayCreationAssignmentFieldNames(methodDeclaration.ExpressionBody!);
             }
 
             builder.AppendLine(@$"
@@ -299,7 +301,7 @@ public static {targetCollectionTypeSymbol.ContainingNamespace.ToFullCodeString()
 [MappingMetadata(MappingMetadataType.{metadataType}, typeof({fromType.ToFullCodeString()}), typeof({toType.ToFullCodeString()}))]{(fields.Length > 0 ? $"\n[MappingMetadata(MappingMetadataType.{MappingMetadataType.IgnoreMembersDeclaration}, {string.Join(", ", fields.Select(m => $"\"{m}\""))})]" : string.Empty)}
 public static {mappingMethodImplSymbol.ReturnType.ToFullCodeString()} {genMethodName}({GenerateMethodParameterString(mappingMethodImplSymbol.Parameters)})");
 
-            builder.AppendLine(methodDeclaration.Body!.ToFullString());
+            builder.AppendLine(methodDeclaration.Body?.ToFullString() ?? $"{methodDeclaration.ExpressionBody!.ToFullString()};");
 
             var generatedClassName = $"{profileTypeSymbol.Name}.{Constants.GenerateNestedClassName}";
             var generatedClassFullName = $"{profileTypeSymbol.ToFullCodeString()}.{Constants.GenerateNestedClassName}";
@@ -312,21 +314,57 @@ public static {mappingMethodImplSymbol.ReturnType.ToFullCodeString()} {genMethod
                                                 (mappingPair, ev) => updateValueFactory(mappingPair, ev, invokeDescriptor));
         }
 
-        static object[] CollectAssignmentFieldNames(BlockSyntax blockSyntax)
+        object[] CollectAssignmentFieldNames(BlockSyntax blockSyntax)
         {
             //只检查最后一个返回表达式为 new 的初始化属性，其余逻辑太复杂，不检查
             if (blockSyntax.Statements.Reverse().OfType<ReturnStatementSyntax>().FirstOrDefault() is ReturnStatementSyntax returnStatementSyntax
-                && returnStatementSyntax.Expression is ObjectCreationExpressionSyntax objectCreationExpressionSyntax
-                && objectCreationExpressionSyntax.Initializer is InitializerExpressionSyntax initializerExpressionSyntax
+                && returnStatementSyntax.Expression is ObjectCreationExpressionSyntax objectCreationExpressionSyntax)
+            {
+                return CollectObjectCreationAssignmentFieldNames(objectCreationExpressionSyntax);
+            }
+            return Array.Empty<object>();
+        }
+
+        object[] CollectArrayCreationAssignmentFieldNames(ArrowExpressionClauseSyntax arrowExpressionClauseSyntax)
+        {
+            //只检查最后一个返回表达式为 new 的初始化属性，其余逻辑太复杂，不检查
+            if (arrowExpressionClauseSyntax.Expression is ObjectCreationExpressionSyntax objectCreationExpressionSyntax)
+            {
+                return CollectObjectCreationAssignmentFieldNames(objectCreationExpressionSyntax);
+            }
+            return Array.Empty<object>();
+        }
+
+        object[] CollectObjectCreationAssignmentFieldNames(ObjectCreationExpressionSyntax objectCreationExpressionSyntax)
+        {
+            object[] result = [];
+            //检查构造函数
+            if (objectCreationExpressionSyntax.ArgumentList?.Arguments.Count > 0)
+            {
+                var semanticModel = Context.Compilation.GetSemanticModel(objectCreationExpressionSyntax.SyntaxTree);
+
+                var symbolInfo = semanticModel.GetSymbolInfo(objectCreationExpressionSyntax, default);
+                if (symbolInfo.Symbol is IMethodSymbol methodSymbol
+                    && methodSymbol.Parameters.Length > 0)
+                {
+                    result = methodSymbol.Parameters.Select(m => m.Name)
+                                                    .ToArray();
+                }
+            }
+
+            //只检查最后一个返回表达式为 new 的初始化属性，其余逻辑太复杂，不检查
+            if (objectCreationExpressionSyntax.Initializer is InitializerExpressionSyntax initializerExpressionSyntax
                 && initializerExpressionSyntax.Expressions.Count > 0)
             {
                 //仅检查赋值语句
-                return initializerExpressionSyntax.Expressions.OfType<AssignmentExpressionSyntax>()
-                                                              .Where(m => m.Left is IdentifierNameSyntax)
-                                                              .Select(m => ((IdentifierNameSyntax)m.Left).Identifier.ValueText as object)
-                                                              .ToArray();
+                result = initializerExpressionSyntax.Expressions.OfType<AssignmentExpressionSyntax>()
+                                                                .Where(m => m.Left is IdentifierNameSyntax)
+                                                                .Select(m => ((IdentifierNameSyntax)m.Left).Identifier.ValueText as object)
+                                                                .Concat(result)
+                                                                .Distinct()
+                                                                .ToArray();
             }
-            return Array.Empty<object>();
+            return result;
         }
     }
 

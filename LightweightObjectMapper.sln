@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
+# 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4054D71E-89E1-4A61-86DA-C8FA4106B573}"
@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
+		global.json = global.json
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -27,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightweightObjectMapper.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightweightObjectMapper.Generator.Test", "test\LightweightObjectMapper.Generator.Test\LightweightObjectMapper.Generator.Test.csproj", "{59D39E45-D3BB-4CA4-8588-138321DE958B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappingProfileProvideLibrary", "test\MappingProfileProvideLibrary\MappingProfileProvideLibrary.csproj", "{E808BBD1-76E2-4D3A-854A-9965B83AC101}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MappingProfileProvideLibrary", "test\MappingProfileProvideLibrary\MappingProfileProvideLibrary.csproj", "{E808BBD1-76E2-4D3A-854A-9965B83AC101}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
