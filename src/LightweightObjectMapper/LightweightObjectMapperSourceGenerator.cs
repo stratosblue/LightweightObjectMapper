@@ -53,52 +53,52 @@ public class LightweightObjectMapperSourceGenerator : IIncrementalGenerator
         });
 
         context.RegisterSourceOutput(mappingProfileProvider.Collect().Combine(typeMapDescriptorProvider.Collect()).Combine(compilationPropertiesProvider),
-                                 (context, input) =>
-                                 {
-                                     var mappingProfiles = input.Left.Left;
-                                     var descriptors = input.Left.Right;
-                                     var compilationProperties = input.Right;
+                                    (context, input) =>
+                                    {
+                                        var mappingProfiles = input.Left.Left;
+                                        var descriptors = input.Left.Right;
+                                        var compilationProperties = input.Right;
 
-                                     var allMapDescriptorMap = new Dictionary<TypeMapDescriptor, TypeMapDescriptor>();
+                                        var allMapDescriptorMap = new Dictionary<TypeMapDescriptor, TypeMapDescriptor>();
 
-                                     for (int i = 0; i < descriptors.Length; i++)
-                                     {
-                                         var typeMapDescriptor = descriptors[i]!;
+                                        for (int i = 0; i < descriptors.Length; i++)
+                                        {
+                                            var typeMapDescriptor = descriptors[i]!;
 
-                                         if (allMapDescriptorMap.TryGetValue(typeMapDescriptor, out var existedTypeMapDescriptor))
-                                         {
-                                             existedTypeMapDescriptor.AddNodes(typeMapDescriptor.Nodes);
-                                         }
-                                         else
-                                         {
-                                             allMapDescriptorMap.Add(typeMapDescriptor, typeMapDescriptor);
-                                         }
-                                     }
+                                            if (allMapDescriptorMap.TryGetValue(typeMapDescriptor, out var existedTypeMapDescriptor))
+                                            {
+                                                existedTypeMapDescriptor.AddNodes(typeMapDescriptor.Nodes);
+                                            }
+                                            else
+                                            {
+                                                allMapDescriptorMap.Add(typeMapDescriptor, typeMapDescriptor);
+                                            }
+                                        }
 
-                                     var compilation = mappingProfiles.FirstOrDefault(m => m.Compilation is not null).Compilation
-                                                       ?? allMapDescriptorMap.FirstOrDefault(m => m.Value.Compilation is not null).Value?.Compilation;
+                                        var compilation = mappingProfiles.FirstOrDefault(m => m.Compilation is not null).Compilation
+                                                          ?? allMapDescriptorMap.FirstOrDefault(m => m.Value.Compilation is not null).Value?.Compilation;
 
-                                     var buildContext = compilation is not null
-                                                        ? new BuildContext(context, compilation, compilationProperties)
-                                                        : null;
+                                        var buildContext = compilation is not null
+                                                           ? new BuildContext(context, compilation, compilationProperties)
+                                                           : null;
 
-                                     if (mappingProfiles.Length > 0)
-                                     {
-                                         buildContext = ThrowIfBuildContextIsNull(buildContext);
-                                         GenerateMappingProfiles(buildContext, mappingProfiles);
-                                     }
+                                        if (mappingProfiles.Length > 0)
+                                        {
+                                            buildContext = ThrowIfBuildContextIsNull(buildContext);
+                                            GenerateMappingProfiles(buildContext, mappingProfiles);
+                                        }
 
-                                     if (allMapDescriptorMap.Count > 0)
-                                     {
-                                         buildContext = ThrowIfBuildContextIsNull(buildContext);
-                                         foreach (var item in allMapDescriptorMap)
-                                         {
-                                             buildContext.TypeMapDescriptors[item.Key] = item.Value;
-                                         }
+                                        if (allMapDescriptorMap.Count > 0)
+                                        {
+                                            buildContext = ThrowIfBuildContextIsNull(buildContext);
+                                            foreach (var item in allMapDescriptorMap)
+                                            {
+                                                buildContext.TypeMapDescriptors[item.Key] = item.Value;
+                                            }
 
-                                         GenerateMapExtensionMethods(buildContext, context.CancellationToken);
-                                     }
-                                 });
+                                            GenerateMapExtensionMethods(buildContext, context.CancellationToken);
+                                        }
+                                    });
 
         static BuildContext ThrowIfBuildContextIsNull(BuildContext? buildContext)
         {

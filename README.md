@@ -14,7 +14,8 @@ A out of the box object mapper library based on `SourceGenerator`. 基于 `Sourc
 - 基于拓展方法实现，不侵入目标类型（Implementation based on extension methods, non intrusive target type）
 
 ### Note!!!
- 基于 `SourceGenerator` 实现，约等价于手写代码，无法实现手写代码不能实现的功能，如：访问私有字段、访问私有构造函数等。
+ - 基于 `SourceGenerator` 实现，约等价于手写代码，无法实现手写代码不能实现的功能，如：访问私有字段、访问私有构造函数等。
+ - 当前不会自动处理嵌套类型映射，需要手动映射嵌套类型后才能正常工作。
 
 ## 3. 使用方法
 

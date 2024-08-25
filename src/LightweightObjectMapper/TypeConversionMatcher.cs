@@ -137,7 +137,16 @@ internal class TypeConversionMatcher
             }
             else if (conversion.IsExplicit && !conversion.IsUnboxing)   //显式转换且不是拆箱
             {
-                typeConversion = new(new MethodInvokeDescriptor($"({toType.ToFullCodeString()})", $"({toType.ToFullCodeString()}){{0}}"));
+                if (_context.WellknownTypes.TryGetIEnumerableItemGenericType(fromType, out var fromTypeIEnumerableInterfaceTypeSymbol)
+                    && _context.WellknownTypes.TryGetIEnumerableItemGenericType(toType, out var toTypeIEnumerableInterfaceTypeSymbol))
+                {
+                    //ClassifyConversion 对集合的转换判定好像有误
+                    typeConversion = new(false);
+                }
+                else
+                {
+                    typeConversion = new(new MethodInvokeDescriptor($"({toType.ToFullCodeString()})", $"({toType.ToFullCodeString()}){{0}}"));
+                }
             }
             else
             {

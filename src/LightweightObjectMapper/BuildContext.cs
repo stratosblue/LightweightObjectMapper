@@ -20,10 +20,14 @@ internal class BuildContext
 
     public CancellationToken CancellationToken => Context.CancellationToken;
 
+#pragma warning disable RS1024 // 正确比较符号
+
     /// <summary>
     /// 集合映射配置
     /// </summary>
     public ConcurrentDictionary<ITypeSymbol, CollectionMappingProfileItem> CollectionMappingProfiles { get; } = new(SymbolEqualityComparer.Default);
+
+#pragma warning restore RS1024 // 正确比较符号
 
     public Compilation Compilation { get; }
 
@@ -36,6 +40,8 @@ internal class BuildContext
     /// 生成器执行上下文
     /// </summary>
     public SourceProductionContext Context { get; }
+
+    public IdentifierMatcher IdentifierMatcher { get; }
 
     /// <summary>
     /// 映射配置
@@ -52,6 +58,10 @@ internal class BuildContext
     /// </summary>
     public SelfTypeCollection SelfTypes { get; }
 
+    public TypeConversionMatcher TypeConversionMatcher { get; }
+
+#pragma warning disable RS1024 // 正确比较符号
+
     /// <summary>
     /// 类型的忽略映射元数据字典
     /// </summary>
@@ -61,8 +71,6 @@ internal class BuildContext
     /// 类型映射描述
     /// </summary>
     public ConcurrentDictionary<TypeMapDescriptor, TypeMapDescriptor> TypeMapDescriptors { get; } = new();
-
-#pragma warning disable RS1024 // 正确比较符号
 
     /// <summary>
     /// 类型映射元数据字典
@@ -120,6 +128,9 @@ internal class BuildContext
         SelfTypes = new(compilation);
 
         NullableSupported = compilation.Options.NullableContextOptions != NullableContextOptions.Disable;
+
+        TypeConversionMatcher = new(this);
+        IdentifierMatcher = new(TypeConversionMatcher);
     }
 
     #endregion Public 构造函数

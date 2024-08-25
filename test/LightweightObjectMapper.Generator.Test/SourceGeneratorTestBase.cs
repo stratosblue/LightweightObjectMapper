@@ -145,15 +145,20 @@ public abstract class SourceGeneratorTestBase
 
     protected static void NoCompilationError(CompilationResult compilationResult)
     {
+        var warnings = compilationResult.GetDiagnosticWarnings();
         var errors = compilationResult.GetDiagnosticErrors();
 
         if (errors.Length > 0)
         {
+            foreach (var item in warnings)
+            {
+                Console.WriteLine($"编译警告 - {item.GetMessage()}");
+            }
             foreach (var item in errors)
             {
                 Console.WriteLine($"编译错误 - {item.GetMessage()}");
             }
-            Assert.Fail($"当前包含编译错误 {errors.Count()} 个");
+            Assert.Fail($"当前包含编译错误 {errors.Count()} 个，警告 {warnings.Count()} 个");
         }
     }
 

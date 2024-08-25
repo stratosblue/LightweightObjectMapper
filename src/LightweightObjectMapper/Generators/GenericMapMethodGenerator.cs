@@ -152,11 +152,18 @@ return (TOut)(target as object);}}");
         {
             if (targetMeta.AvailableConstructors.Length == 0)   //没有公共构造函数
             {
-                Context.TryReportTypeDiagnostic(targetDescriptor.Nodes, DiagnosticDescriptors.Error.NoAnyPublicConstructor, new object[] { targetDescriptor.TargetType });
+                Context.TryReportTypeDiagnostic(targetDescriptor.Nodes, DiagnosticDescriptors.Error.NoAnyPublicConstructor, [targetDescriptor.TargetType]);
             }
             else
             {
-                Context.TryReportTypeDiagnostic(targetDescriptor.Nodes, DiagnosticDescriptors.Error.ConstructorMatchFailed, new object[] { targetDescriptor.TargetType });
+                if (constructorMatchResult.OrderedParameterConversions is not null)
+                {
+                    foreach (var item in constructorMatchResult.OrderedParameterConversions)
+                    {
+                        Context.TryReportTypeDiagnostic(targetDescriptor.Nodes, item.ReportDiagnosticDescriptor, item.DiagnosticMessageArgs);
+                    }
+                }
+                Context.TryReportTypeDiagnostic(targetDescriptor.Nodes, DiagnosticDescriptors.Error.ConstructorMatchFailed, [targetDescriptor.TargetType]);
             }
             return false;
         }
@@ -188,7 +195,15 @@ return (TOut)(target as object);
             var ignoreIdentifiers = prepareTypeConversion.ConversionInvokeDescriptor!.Value.States is null
                                     ? targetMeta.IgnoreMemberNames
                                     : targetMeta.IgnoreMemberNames.Concat(prepareTypeConversion.ConversionInvokeDescriptor.Value.States.OfType<string>());
-            GenerateFieldAndPropertyMapCode(bodyBuilder, targetDescriptor, sourceMeta, targetMeta, "source.", "target.", ";", includeInitOnly: false, ignoreIdentifiers: ignoreIdentifiers);
+            GenerateFieldAndPropertyMapCode(builder: bodyBuilder,
+                                            descriptor: targetDescriptor,
+                                            sourceMeta: sourceMeta,
+                                            targetMeta: targetMeta,
+                                            sourceAccessBody: "source.",
+                                            targetAccessBody: "target.",
+                                            lineEndMark: ";",
+                                            includeInitOnly: false,
+                                            ignoreIdentifiers: ignoreIdentifiers);
 
             builder.AppendLine($@"{elseBlock}if (typeof(TOut) == typeof({targetTypeName}))
 {{
@@ -200,7 +215,20 @@ return (TOut)(target as object);
         }
         else    //没有映射准备，手动构建对象
         {
-            GenerateFieldAndPropertyMapCode(bodyBuilder, targetDescriptor, sourceMeta, targetMeta, "source.", string.Empty, ",", includeInitOnly: true, ignoreIdentifiers: targetMeta.IgnoreMemberNames);
+            //忽略构造函数参数的同名属性
+            var ignoreIdentifiers = constructorMatchResult.OrderedParameterConversions?.Select(m => m.Identifier?.Identifier)
+                                                                                       .Where(m => m is not null);
+            ignoreIdentifiers = ignoreIdentifiers.Concat(targetMeta.IgnoreMemberNames);
+
+            GenerateFieldAndPropertyMapCode(builder: bodyBuilder,
+                                            descriptor: targetDescriptor,
+                                            sourceMeta: sourceMeta,
+                                            targetMeta: targetMeta,
+                                            sourceAccessBody: "source.",
+                                            targetAccessBody: string.Empty,
+                                            lineEndMark: ",",
+                                            includeInitOnly: true,
+                                            ignoreIdentifiers: ignoreIdentifiers!);
 
             builder.AppendLine($@"{elseBlock}if (typeof(TOut) == typeof({targetTypeName}))
 {{

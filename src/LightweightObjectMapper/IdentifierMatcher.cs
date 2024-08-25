@@ -52,10 +52,16 @@ internal class IdentifierMatcher
         {
             //查找名称全匹配的字段/属性
             if (identifiers.FirstOrDefault(m => string.Equals(identifier.Identifier, m.Identifier, StringComparison.Ordinal)) is TypeReadWriteIdentifier targetIdentifier
-                && _typeConversionMatcher.GetTypeConversion(targetIdentifier.TypeSymbol, identifier.TypeSymbol) is TypeConversion typeConversion
-                && typeConversion)
+                && _typeConversionMatcher.GetTypeConversion(targetIdentifier.TypeSymbol, identifier.TypeSymbol) is TypeConversion typeConversion)
             {
-                return new(targetIdentifier, typeConversion);
+                if (typeConversion) //可转换
+                {
+                    return new(targetIdentifier, typeConversion);
+                }
+                else    //不可转换
+                {
+                    return PropertyOrFieldTypeNotMatch(identifier, identifiers);
+                }
             }
 
             nameMatchingScoreDelegate ??= DefaultNameMatchingScore;
@@ -69,10 +75,15 @@ internal class IdentifierMatcher
                     return new(matchIdentifier, matchTypeConversion);
                 }
             }
+            return PropertyOrFieldTypeNotMatch(identifier, identifiers);
+        }
+        return new();
+
+        static TypeIdentifierConversion PropertyOrFieldTypeNotMatch(TypeReadWriteIdentifier identifier, ImmutableArray<TypeReadWriteIdentifier> identifiers)
+        {
             var diagnosticMessageArgs = new object?[] { identifier.Identifier, string.Join(", ", identifiers.Select(m => $"{m.Identifier}({m.TypeSymbol})")), $"{identifier.Identifier}({identifier.TypeSymbol})" };
             return new TypeIdentifierConversion(DiagnosticDescriptors.Warning.PropertyOrFieldTypeNotMatch, diagnosticMessageArgs);
         }
-        return new();
     }
 
     /// <summary>
@@ -93,17 +104,23 @@ internal class IdentifierMatcher
             // 无参构造函数
             return new(true, firstConstructor, ImmutableArray<TypeIdentifierConversion>.Empty);
         }
+        var constructorMatchResults = new List<ConstructorMatchResult>();
         foreach (var constructor in orderedConstructors)
         {
             // 构造函数参数匹配跳过首字符
             var conversions = constructor.OrderedParameters.Select(m => Match(m, searchDictionary, static (sourceName, matchName) => InternalNameMatchingScore(sourceName, matchName, 1))).ToArray();
+
             if (conversions.All(m => m))
             {
                 return new(true, constructor, conversions.ToImmutableArray());
             }
+            else
+            {
+                constructorMatchResults.Add(new(false, constructor, conversions.ToImmutableArray()));
+            }
         }
 
-        return default;
+        return constructorMatchResults.FirstOrDefault();
     }
 
     #endregion Public 方法
