@@ -9,7 +9,7 @@ jobs:
   publish-with-build:
 
     runs-on: ubuntu-latest
-
+        
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET Core SDK
