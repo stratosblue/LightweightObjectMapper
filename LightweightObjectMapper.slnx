@@ -1,0 +1,22 @@
+<Solution>
+  <Folder Name="/SolutionItems/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="CodeMaid.config" />
+    <File Path="Directory.Build.props" />
+    <File Path="global.json" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/SolutionItems/test/">
+    <File Path="test/Directory.Build.props" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/LightweightObjectMapper/LightweightObjectMapper.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/LightweightObjectMapper.Generator.Test/LightweightObjectMapper.Generator.Test.csproj" />
+    <Project Path="test/LightweightObjectMapper.Test/LightweightObjectMapper.Test.csproj" />
+    <Project Path="test/MapperTestLibrary1/MapperTestLibrary1.csproj" />
+    <Project Path="test/MappingProfileProvideLibrary/MappingProfileProvideLibrary.csproj" />
+  </Folder>
+</Solution>

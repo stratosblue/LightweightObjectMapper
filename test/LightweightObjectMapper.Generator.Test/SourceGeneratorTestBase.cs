@@ -88,7 +88,7 @@ public abstract class SourceGeneratorTestBase
 
         var inputCompilation = CreateCompilation(sourceCodes);
 
-        var generator = new LightweightObjectMapperSourceGenerator();
+        var generator = new MapCodeGenerator();
 
         GeneratorDriver driver = CSharpGeneratorDriver.Create(generator);
         driver.WithUpdatedParseOptions(ProvideParseOptions() ?? CSharpParseOptions.Default);

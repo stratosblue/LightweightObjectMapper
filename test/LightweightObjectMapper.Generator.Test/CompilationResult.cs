@@ -17,13 +17,13 @@ public class CompilationResult
 
     public GeneratorDriverRunResult Result { get; }
 
-    public LightweightObjectMapperSourceGenerator SourceGenerator { get; }
+    public MapCodeGenerator SourceGenerator { get; }
 
     #endregion Public 属性
 
     #region Public 构造函数
 
-    public CompilationResult(LightweightObjectMapperSourceGenerator sourceGenerator,
+    public CompilationResult(MapCodeGenerator sourceGenerator,
                              GeneratorDriver driver,
                              Compilation inputCompilation,
                              Compilation outputCompilation,

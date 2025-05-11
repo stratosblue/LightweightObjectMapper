@@ -1,0 +1,11 @@
+﻿<Project>
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <LangVersion>latest</LangVersion>
+    <IsPackable>false</IsPackable>
+
+    <EmbeddedResourceTesting>true</EmbeddedResourceTesting>
+  </PropertyGroup>
+</Project>

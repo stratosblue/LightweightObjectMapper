@@ -19,7 +19,7 @@ using Microsoft.CodeAnalysis.Text;
 namespace LightweightObjectMapper;
 
 [Generator(LanguageNames.CSharp)]
-public class LightweightObjectMapperSourceGenerator : IIncrementalGenerator
+public class MapCodeGenerator : IIncrementalGenerator
 {
     #region Public 方法
 
@@ -274,7 +274,7 @@ public class LightweightObjectMapperSourceGenerator : IIncrementalGenerator
     {
         context.RegisterPostInitializationOutput(context =>
         {
-            var assembly = typeof(LightweightObjectMapperSourceGenerator).Assembly;
+            var assembly = typeof(MapCodeGenerator).Assembly;
             var resourceNames = assembly.GetManifestResourceNames();
             AddPreCodes(context, assembly, resourceNames.Single(m => m.EndsWith(Constants.PreCodesFileName)));
             AddPreCodes(context, assembly, resourceNames.Single(m => m.EndsWith(Constants.PredefinedSpecialTypeMappingFileName)));
