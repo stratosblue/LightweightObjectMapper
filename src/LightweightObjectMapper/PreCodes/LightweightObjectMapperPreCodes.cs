@@ -177,6 +177,7 @@ namespace LightweightObjectMapper
         /// </summary>
         /// <typeparam name="TOut"></typeparam>
         /// <param name="source"></param>
+        /// <param name="target"></param>
         /// <returns></returns>
         [Obsolete(ErrorCallPlaceholderMethodMessage, true)]
         public static TOut MapTo<TOut>(this object source, TOut target)
@@ -190,6 +191,7 @@ namespace LightweightObjectMapper
         /// </summary>
         /// <typeparam name="TOut"></typeparam>
         /// <param name="source"></param>
+        /// <param name="target"></param>
         /// <returns></returns>
         [Obsolete(ErrorCallPlaceholderMethodMessage, true)]
         public static TOut MapTo<TOut>(this object source, ref TOut target)

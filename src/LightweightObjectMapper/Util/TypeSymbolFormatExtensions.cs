@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using LightweightObjectMapper.Util;
+﻿using LightweightObjectMapper.Util;
 using Microsoft.CodeAnalysis;
 
 namespace LightweightObjectMapper;
@@ -68,7 +66,7 @@ internal static class TypeSymbolExtensions
         }
         return $"{typeSymbol.ContainingNamespace.ToFullCodeString()}.{typeSymbol.Name}<{GetCommas(namedTypeSymbol.TypeArguments.Length)}>";
 
-        string GetCommas(int argumentCount)
+        static string GetCommas(int argumentCount)
         {
             return argumentCount switch
             {
@@ -85,7 +83,17 @@ internal static class TypeSymbolExtensions
 
     public static string ToRemarkCodeString(this ITypeSymbol typeSymbol)
     {
-        return typeSymbol.ToFullCodeString().Replace('<', '{').Replace('>', '}');
+        return InnerToRemarkCodeString(typeSymbol);
+
+        static string InnerToRemarkCodeString(ITypeSymbol typeSymbol)
+        {
+            if (typeSymbol is INamedTypeSymbol namedTypeSymbol
+                && namedTypeSymbol.IsGenericType)
+            {
+                typeSymbol = namedTypeSymbol.ConstructedFrom;
+            }
+            return typeSymbol.ToFullCodeString().Replace('<', '{').Replace('>', '}');
+        }
     }
 
     #endregion Public 方法

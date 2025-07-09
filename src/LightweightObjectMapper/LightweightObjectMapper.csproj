@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
 
     <Description>A out of the box object mapper library based on `SourceGenerator`. 基于 `SourceGenerator` 的开箱即用对象映射库。</Description>
 
